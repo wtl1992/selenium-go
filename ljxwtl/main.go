@@ -3,9 +3,11 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"os"
 	"os/exec"
+	"selenium-go/ljxwtl/lang"
 	"selenium-go/ljxwtl/selenium/httpcores"
 	"strings"
 	"sync"
@@ -14,7 +16,9 @@ import (
 func main() {
 	projectDir, _ := os.Getwd()
 
-	var driverAbsPath = projectDir + "/binary/chromedriver.exe"
+	var driverAbsPath = projectDir + "/binary/chromedriver"
+
+	fmt.Println(driverAbsPath)
 
 	var wg sync.WaitGroup
 
@@ -26,6 +30,7 @@ func main() {
 		if err != nil {
 			return
 		}
+
 		var httpClient = http.Client{}
 
 		var params = make(map[string]interface{})
@@ -34,7 +39,17 @@ func main() {
 		paramBytes, _ := json.Marshal(params)
 
 		request, _ := http.NewRequest(http.MethodPost, "http://localhost:8080/session", strings.NewReader(string(paramBytes)))
-		response, _ := httpClient.Do(request)
+
+		var response *http.Response = nil
+		for {
+			response, _ = httpClient.Do(request)
+
+			if response != nil {
+				break
+			}
+		}
+
+		log.Println(response)
 
 		var httpEntity = new(httpcores.HttpEntity)
 		httpEntity.R = response.Body
@@ -52,6 +67,12 @@ func main() {
 		fmt.Println(contentMap)
 
 	}()
+
+	var obj = lang.Object{}
+
+	code := obj.HashCode()
+
+	fmt.Println(code)
 
 	wg.Wait()
 }
