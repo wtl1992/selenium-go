@@ -229,18 +229,62 @@ var (
 			CmdHttpRequestBody:   "{\n    \"using\" :\"LOCATION_STRATEGY\",\n    \"value\":\"SELECT_VALUE\"\n}",
 		},
 	}
-	FullscreenWindowHttpRequestCmd = HttpRequestCmd{
+	FindElementFromShadowRootHttpRequestCmd = HttpRequestCmd{
 		BaseCmd{
-			CmdName:              "Fullscreen Window",
-			CmdHttpAddress:       "http://localhost:SELENIUM_LISTEN_PORT/session/SESSION_ID/window/fullscreen",
+			CmdName:              "Find Element From Shadow Root",
+			CmdHttpAddress:       "http://localhost:SELENIUM_LISTEN_PORT/session/SESSION_ID/shadow/SHADOW_ID/element",
 			CmdHttpRequestMethod: http.MethodPost,
+			CmdHttpRequestBody:   "{\n    \"using\" :\"LOCATION_STRATEGY\",\n    \"value\":\"SELECT_VALUE\"\n}",
 		},
 	}
-	FullscreenWindowHttpRequestCmd = HttpRequestCmd{
+	FindElementsFromShadowRootHttpRequestCmd = HttpRequestCmd{
 		BaseCmd{
-			CmdName:              "Fullscreen Window",
-			CmdHttpAddress:       "http://localhost:SELENIUM_LISTEN_PORT/session/SESSION_ID/window/fullscreen",
+			CmdName:              "Find Elements From Shadow Root",
+			CmdHttpAddress:       "http://localhost:SELENIUM_LISTEN_PORT/session/SESSION_ID/shadow/SHADOW_ID/elements",
 			CmdHttpRequestMethod: http.MethodPost,
+			CmdHttpRequestBody:   "{\n    \"using\" :\"LOCATION_STRATEGY\",\n    \"value\":\"SELECT_VALUE\"\n}",
+		},
+	}
+	GetActiveElementHttpRequestCmd = HttpRequestCmd{
+		BaseCmd{
+			CmdName:              "Get Active Element",
+			CmdHttpAddress:       "http://localhost:SELENIUM_LISTEN_PORT/session/SESSION_ID/element/active",
+			CmdHttpRequestMethod: http.MethodGet,
+		},
+	}
+	GetElementShadowRootHttpRequestCmd = HttpRequestCmd{
+		BaseCmd{
+			CmdName:              "Get Element Shadow Root",
+			CmdHttpAddress:       "http://localhost:SELENIUM_LISTEN_PORT/session/SESSION_ID/element/ELEMENT_ID/shadow",
+			CmdHttpRequestMethod: http.MethodGet,
+		},
+	}
+	IsElementSelectedHttpRequestCmd = HttpRequestCmd{
+		BaseCmd{
+			CmdName:              "Is Element Selected",
+			CmdHttpAddress:       "http://localhost:SELENIUM_LISTEN_PORT/session/SESSION_ID/element/ELEMENT_ID/selected",
+			CmdHttpRequestMethod: http.MethodGet,
+		},
+	}
+	GetElementAttributeHttpRequestCmd = HttpRequestCmd{
+		BaseCmd{
+			CmdName:              "Get Element Attribute",
+			CmdHttpAddress:       "http://localhost:SELENIUM_LISTEN_PORT/session/SESSION_ID/element/ELEMENT_ID/attribute/NAME",
+			CmdHttpRequestMethod: http.MethodGet,
+		},
+	}
+	GetElementPropertyHttpRequestCmd = HttpRequestCmd{
+		BaseCmd{
+			CmdName:              "Get Element Property",
+			CmdHttpAddress:       "http://localhost:SELENIUM_LISTEN_PORT/session/SESSION_ID/element/ELEMENT_ID/property/NAME",
+			CmdHttpRequestMethod: http.MethodGet,
+		},
+	}
+	GetElementCSSValueHttpRequestCmd = HttpRequestCmd{
+		BaseCmd{
+			CmdName:              "Get Element CSS Value",
+			CmdHttpAddress:       "http://localhost:SELENIUM_LISTEN_PORT/session/SESSION_ID/element/ELEMENT_ID/css/PROPERTY_NAME",
+			CmdHttpRequestMethod: http.MethodGet,
 		},
 	}
 )
